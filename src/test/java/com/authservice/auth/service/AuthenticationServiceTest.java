@@ -8,7 +8,6 @@ import com.authservice.auth.model.Roles;
 import com.authservice.auth.model.UserData;
 import com.authservice.auth.repository.UserRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,14 +16,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 
@@ -44,11 +42,14 @@ class AuthenticationServiceTest {
     @Mock
     JwtService jwtService;
 
-    @BeforeEach
-    void setUp()
-    {
-        authenticationService = new AuthenticationService(userRepository,passwordEncoder,jwtService,authenticationManager);
-    }
+    @Mock
+    KafkaTemplate<Long,String> kafkaTemplate;
+
+//    @BeforeEach
+//    void setUp()
+//    {
+//        authenticationService = new AuthenticationService(userRepository,passwordEncoder,jwtService,authenticationManager);
+//    }
 
 
     @Test
@@ -77,5 +78,17 @@ class AuthenticationServiceTest {
 
 
 
+    }
+
+    @Test
+    void userDataList() {
+
+        List<UserData> userData= Arrays.asList(new UserData(1L,"Shyam",21,"shyam@gmail.com","Shyam", Roles.USER),
+                new UserData(2L,"Teja",21,"teja@gmail.com","teja", Roles.USER));
+
+        authenticationService.userDataList();
+
+        Mockito.verify(userRepository).findAll();
+//        Mockito.when(userRepository.findAll()).thenReturn(userData);
     }
 }

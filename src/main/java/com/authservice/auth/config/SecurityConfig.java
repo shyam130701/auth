@@ -28,6 +28,8 @@ public class SecurityConfig  {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
+//                .requestMatchers("call/consumer/login")
+//                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -35,7 +37,8 @@ public class SecurityConfig  {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors();
         return http.build();
     }
 }
