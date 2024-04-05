@@ -14,12 +14,8 @@ name: "CodeQL"
 on:
   push:
     branches: [ "master" ]
-    paths-ignore:
-      - '**/src/main/java/com/authservice/auth/config/*'
   pull_request:
     branches: [ "master" ]
-    paths-ignore:
-      - '**/src/main/java/com/authservice/auth/config/*'
   schedule:
     - cron: '17 2 * * 0'
 
@@ -65,6 +61,8 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
+        paths-ignore: |
+          **/src/main/java/com/authservice/auth/config/**
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
