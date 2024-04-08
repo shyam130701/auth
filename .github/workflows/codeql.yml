@@ -16,12 +16,8 @@ name: "CodeQL"
 on:
   push:
     branches: [ "master" ]
-    paths-ignore:
-      - 'src/main/java/com/authservice/auth/config/*.java'
   pull_request:
     branches: [ "master" ]
-    paths-ignore:
-      - 'src/main/java/com/authservice/auth/config/*.java'
   schedule:
     - cron: '17 2 * * 0'
 
@@ -65,10 +61,9 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
+        config-file: ./.github/codeql/codeql-config.yml
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-        paths-ignore: |
-          **/main/*
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
