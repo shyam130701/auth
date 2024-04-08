@@ -12,15 +12,16 @@
 name: "CodeQL"
 
 
+
 on:
   push:
     branches: [ "master" ]
     paths-ignore:
-      - 'src/main/java/com/authservice/auth/config/SecurityConfig.java'
+      - 'src/main/java/com/authservice/auth/config/*.java'
   pull_request:
     branches: [ "master" ]
     paths-ignore:
-      - 'src/main/java/com/authservice/auth/config/SecurityConfig.java'
+      - 'src/main/java/com/authservice/auth/config/*.java'
   schedule:
     - cron: '17 2 * * 0'
 
