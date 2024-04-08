@@ -15,11 +15,11 @@ on:
   push:
     branches: [ "master" ]
     paths-ignore:
-      - "**/main/**"
+      - "src/main/java/com/authservice/auth/config/SecurityConfig.java"
   pull_request:
     branches: [ "master" ]
     paths-ignore:
-      - "**/main/**"
+      - "src/main/java/com/authservice/auth/config/SecurityConfig.java"
   schedule:
     - cron: '17 2 * * 0'
 
