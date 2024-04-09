@@ -61,7 +61,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          #        config-file: .github/workflows/codeql-config.yml
+          config-file: .github/workflows/codeql-config.yml
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -85,9 +85,19 @@ jobs:
           echo '  make bootstrap'
           echo '  make release'
           exit 1
-
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-						   
+          output: sarif-results
+
+
+
+
+#    - name: Filter SARIF
+#      uses: advanced-security/filter-sarif@v1.0.0
+#      with:
+#        patterns: |
+#          - src/main/java/com/authservice/auth/config/SecurityConfig.java
+#        input: sarif-results/java.sarif
+#        output: sarif-results/java.sarif
