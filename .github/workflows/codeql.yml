@@ -95,6 +95,6 @@ jobs:
         uses: advanced-security/filter-sarif@v1.0.0
         with:
           patterns: |
-            - '**/*.java'
+            - '-**/*'
           input: sarif-results/java.sarif
           output: sarif-results/java.sarif
