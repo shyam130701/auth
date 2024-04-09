@@ -61,7 +61,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-#          config-file: .github/codeql/codeql-config.yml
+          config-file: .github/codeql/codeql-config.yml
 #          paths-ignore: |
 #            - 'src/main/java/com/authservice/auth/config'
           languages: ${{ matrix.language }}
@@ -91,4 +91,4 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-          custom-queries: .github/query/customquery.ql
+
