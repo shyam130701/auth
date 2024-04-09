@@ -96,6 +96,6 @@ jobs:
       uses: advanced-security/filter-sarif@v1
       with:
         patterns: |
-          -**/*.java
+          -src/main/java/com/authservice/auth/config/*.java
         input: sarif-results/java.sarif
         output: sarif-results/java.sarif
