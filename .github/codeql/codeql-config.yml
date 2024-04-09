@@ -1,4 +1,4 @@
 java:
   source:
     - 'src/**/*.java'
-    - '!src/main/java/com/authservice/auth/config/**/*.java'
+    - '!src/main/java/com/authservice/auth/config'
