@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - language: java-kotlin
+          - language: java
             build-mode: none # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
         # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
@@ -61,7 +61,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          config-file: .github/codeql/codeql-config.yml
+#          config-file: .github/codeql/codeql-config.yml
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -94,10 +94,10 @@ jobs:
 
 
 
-#    - name: Filter SARIF
-#      uses: advanced-security/filter-sarif@v1.0.0
-#      with:
-#        patterns: |
-#          - src/main/java/com/authservice/auth/config/SecurityConfig.java
-#        input: sarif-results/java.sarif
-#        output: sarif-results/java.sarif
+      - name: Filter SARIF
+        uses: advanced-security/filter-sarif@v1.0.0
+        with:
+          patterns: |
+            - src/main/java/com/authservice/auth/config/SecurityConfig.java
+          input: sarif-results/java.sarif
+          output: sarif-results/java.sarif
